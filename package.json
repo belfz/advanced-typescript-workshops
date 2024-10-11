@@ -1,0 +1,24 @@
+{
+  "name": "typescript-workshops",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "exec": "node --loader ts-node/esm --no-warnings"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "fp-ts": "^2.16.9",
+    "io-ts": "^2.2.21",
+    "io-ts-types": "^0.5.19",
+    "monocle-ts": "^2.3.13",
+    "newtype-ts": "^0.3.5"
+  }
+}
