@@ -1,10 +1,11 @@
-type Tree<T> = Empty | Node<T>;
+type Tree<T> = Empty | Cell<T>;
 
-class Node<T> {
+// #region product types
+class Cell<T> {
   constructor(public value: T, public left: Tree<T>, public right: Tree<T>) {}
 
   public toString(): string {
-    return `Node(${
+    return `Cell(${
       this.value
     }, ${this.left.toString()}, ${this.right.toString()})`;
   }
@@ -15,10 +16,13 @@ class Empty {
     return 'Empty';
   }
 }
+// #endregion
 
+// #region main
 const main = () => {
-  const tree = new Node(42, new Node(0, new Empty(), new Empty()), new Empty());
+  const tree = new Cell(42, new Cell(0, new Empty(), new Empty()), new Empty());
   console.log(tree.toString());
 };
 
 main();
+// #endregion
