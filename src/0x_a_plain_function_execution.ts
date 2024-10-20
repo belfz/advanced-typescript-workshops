@@ -1,13 +1,19 @@
 import { getTodos } from './http/client'
-import { HTTPError } from 'ky'
+import { isAxiosError } from 'axios'
 
-try {
-  // 1. Promise<unknown>
-  const result = await getTodos()
-  console.log(result)
-} catch (err) {
-  // 2. error: unknown
-  if (err instanceof HTTPError) {
-    console.error(`whoops: ${err.message}`)
+const main = async () => {
+  try {
+    // 1. Promise<any>
+    const result = await getTodos()
+    console.log(result)
+  } catch (err) {
+    // 2. error: unknown
+    if (isAxiosError(err)) {
+      console.error(`AxiosError: ${err.message}`)
+    } else {
+      console.error(`Other error: ${err}`)
+    }
   }
 }
+
+main()
