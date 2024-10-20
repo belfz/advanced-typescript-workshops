@@ -3,6 +3,7 @@ import * as E from 'fp-ts/Either'
 import { pipe } from 'fp-ts/function'
 import * as t from 'io-ts'
 import { NonEmptyString } from 'io-ts-types'
+import { failure } from 'io-ts/PathReporter'
 
 const TodoItem = t.type({
   userId: t.Int,
@@ -11,22 +12,18 @@ const TodoItem = t.type({
   completed: t.boolean,
 })
 
-interface TodoItem extends t.TypeOf<typeof TodoItem> {}
+type TodoItem = t.TypeOf<typeof TodoItem>
 
 const main = async () => {
   pipe(
     await getTodos(),
     t.array(TodoItem).decode,
     E.match(
-      (left) => {
-        console.error(`an error occurred: ${left}`)
-      },
-      (right) => {
+      (left) => console.error(`An error occurred: ${failure(left)}`),
+      (rightValue) =>
         console.info(
-          `successfully decoded an array of ${right.length} TodoItems`,
-        )
-      },
-      // TODO how to catch errors from the http client?
+          `successfully decoded an array of ${rightValue.length} TodoItems`,
+        ),
     ),
   )
 }
