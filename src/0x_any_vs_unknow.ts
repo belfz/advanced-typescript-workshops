@@ -2,27 +2,39 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 /**
- * 'any' is like unfastening your seatbelts while driving 140km/h
+ * 'any' vs 'unknown'
  */
-let anything: any = 42
-anything = 'wat'
 
-/**
- * - look ma, no hands!
- * - boom
- */
-console.log(anything.lol)
+// #region any
+{
+  /**
+   * 'any' is like unfastening your seatbelts while driving 140km/h
+   */
+  let anything: any = 42
+  anything = 'wat'
 
-let notSure: unknown = 'humm'
-notSure = 45
+  /**
+   * bad!
+   */
+  console.log(anything.lol)
 
-/**
- * nope
- */
-// console.log(notSure.nah)
+  /**
+   * also bad!
+   */
+  const t: boolean = anything
+}
+// #endregion
 
-// TODO work on this example
-/**
- * 😵
- */
-const t: number = '42' as any
+// #region unknown
+{
+  let notSure: unknown = 'humm'
+  notSure = 45
+
+  /**
+   * we're safe!
+   * uncomment any of the lines of code below to see that TypeScript complains.
+   */
+  // console.log(notSure.nah)
+  // const y: boolean = notSure
+}
+// #endregion
