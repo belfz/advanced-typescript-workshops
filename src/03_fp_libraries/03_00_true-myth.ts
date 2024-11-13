@@ -1,9 +1,15 @@
 import { DivisionByZeroError } from './errors'
 import { Maybe, Result } from 'true-myth'
 
+/**
+ * true-myth is a very basic library providing two most common utility types
+ * for functional programming: Maybe ("Option") and Result ("Either").
+ *
+ * https://github.com/true-myth/true-myth
+ */
+
 // #region maybe
 const maybeNumber = Maybe.of(42)
-
 const maybeNot = Maybe.of<number>(undefined)
 
 const value = maybeNumber

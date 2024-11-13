@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 /**
- * 'any' vs 'unknown'
+ * 'any' vs 'unknown' - a reminder.
  */
 
 // #region any

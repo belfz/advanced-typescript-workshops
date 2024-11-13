@@ -3,16 +3,24 @@ import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { pipe } from 'fp-ts/function'
 
-// #region maybe
-const maybeNumber = O.of(42)
+/**
+ * fp-ts is a very sophisticated library for functional programming with TypeScript.
+ * Besides basics, it provides a plethora of advanced operators, types, stacked monads,
+ * transformers etc. It is also interoperable with io-ts, a runtime types library (more about it
+ * in the next section).
+ *
+ * https://github.com/gcanti/fp-ts
+ */
 
-const maybeNot: O.Option<number> = O.fromNullable(undefined)
+// #region option
+const numOption = O.of(42)
+const emptyOption: O.Option<number> = O.fromNullable(undefined)
 
 const value = pipe(
-  maybeNumber,
+  numOption,
   O.flatMap((first) =>
     pipe(
-      maybeNot,
+      emptyOption,
       O.map((second) => first + second),
     ),
   ),
