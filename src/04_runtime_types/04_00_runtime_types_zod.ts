@@ -1,9 +1,5 @@
 import { getTodos } from '../http/client'
-import * as E from 'fp-ts/Either'
-import { pipe } from 'fp-ts/function'
-import * as t from 'io-ts'
-import { NonEmptyString, nonEmptyArray } from 'io-ts-types'
-import { failure } from 'io-ts/PathReporter'
+import { z } from 'zod'
 
 /**
  * "In C# or Java, it’s meaningful to think of a one-to-one correspondence between runtime types
@@ -30,35 +26,28 @@ type TodoItem_ = {
 // #endregion
 
 // #region runtime types
-const TodoItem = t.type({
-  userId: t.Int,
-  id: t.Int,
-  title: NonEmptyString,
-  completed: t.boolean,
+const TodoItem = z.object({
+  userId: z.number(),
+  id: z.number(),
+  title: z.string(),
+  completed: z.boolean(),
 })
 
-type TodoItem = t.TypeOf<typeof TodoItem>
+type TodoItem = z.infer<typeof TodoItem>
 
-/**
- * custom typeguard
- */
-TodoItem.is({ something: 'not a TodoItem!' })
 // #endregion
 
 // #region main
 const main = async () => {
-  pipe(
-    await getTodos(),
-    t.array(TodoItem).decode,
-    E.match(
-      (left) => console.error(`An error occurred: ${failure(left)}`),
-      (right) => {
-        console.info(
-          `successfully decoded an array of ${right.length} TodoItems!`,
-        )
-      },
-    ),
-  )
+  const parsed = TodoItem.array().safeParse(await getTodos())
+
+  if (parsed.success) {
+    console.log(
+      `successfully decoded an array of ${parsed.data.length} TodoItems!`,
+    )
+  } else {
+    console.error(`An error occurred: ${parsed.error}`)
+  }
 }
 
 main()
@@ -68,7 +57,6 @@ main()
  * <<exercises>>
  *
  * 1. What do you think - can runtime types be used only with TypeScript?
- * 2. Try changing `t.array(TodoItem).decode` to `nonEmptyArray(TodoItem).decode`. What will happen in case
+ * 2. Try changing `TodoItem.array()` to `TodoItem.array().nonempty()`. What will happen in case
  *    `getTodos()` returns an empty array (for both cases)?
- * 3. What is the use of `TodoItem.encode`?
  */
