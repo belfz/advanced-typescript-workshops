@@ -2,7 +2,7 @@ import { getTodos } from '../http/client'
 import * as E from 'fp-ts/Either'
 import { pipe } from 'fp-ts/function'
 import * as t from 'io-ts'
-import { NonEmptyString } from 'io-ts-types'
+import { NonEmptyString, nonEmptyArray } from 'io-ts-types'
 import { failure } from 'io-ts/PathReporter'
 
 /**
@@ -42,7 +42,7 @@ type TodoItem = t.TypeOf<typeof TodoItem>
 /**
  * custom typeguard
  */
-TodoItem.is({ message: 'definitely not adhering to the TodoItem shape' })
+TodoItem.is({ something: 'not a TodoItem!' })
 // #endregion
 
 // #region main
@@ -52,10 +52,11 @@ const main = async () => {
     t.array(TodoItem).decode,
     E.match(
       (left) => console.error(`An error occurred: ${failure(left)}`),
-      (rightValue) =>
+      (right) => {
         console.info(
-          `successfully decoded an array of ${rightValue.length} TodoItems`,
-        ),
+          `successfully decoded an array of ${right.length} TodoItems!`,
+        )
+      },
     ),
   )
 }
@@ -67,4 +68,7 @@ main()
  * <<exercises>>
  *
  * 1. What do you think - can runtime types be used only with TypeScript?
+ * 2. Try changing `t.array(TodoItem).decode` to `nonEmptyArray(TodoItem).decode`. What will happen in case
+ *    `getTodos()` returns an empty array (for both cases)?
+ * 3. What is the use of `TodoItem.encode`?
  */
