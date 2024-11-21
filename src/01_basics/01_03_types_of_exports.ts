@@ -1,20 +1,18 @@
-// #endregion
-// #region export const and type under the same key
 import * as t from 'io-ts'
-import { NonEmptyString, UUID } from 'io-ts-types'
+import { NonEmptyString } from 'io-ts-types'
 
+// #region plain export
 /**
  * In TS/JS, in contrast to Scala (2.x) or Java anything can be exported and imported.
  *
  * Unless you adopted the classes (either by convention or because of using a specific
  * framework), there's zero need to write e. g. your services as classes.
  */
-
-// #region plain export
 export const SOME_CONSTANT_VALUE = 42
 
 export const serviceFunction = (param: number, anotherParam: string) =>
   `doing important work with ${param} and ${anotherParam}`
+// #endregion
 
 // #region default export
 const someRecord: Record<string, number> = {
@@ -24,6 +22,7 @@ const someRecord: Record<string, number> = {
 export default someRecord
 // #endregion
 
+// #region export const and type under the same key
 /**
  * This is a 'runtime type'.
  * We'll talk about it in the lesson about runtime types.
