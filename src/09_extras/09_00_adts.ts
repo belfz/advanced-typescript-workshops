@@ -37,4 +37,5 @@ main()
 
 /**
  * read more: https://blog.softwaremill.com/algebraic-data-types-in-four-languages-858788043d4e
+ * also, check out this library: https://github.com/pfgray/ts-adt
  */
