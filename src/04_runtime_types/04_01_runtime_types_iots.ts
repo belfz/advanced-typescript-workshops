@@ -58,4 +58,18 @@ main()
  * 1. Try changing `t.array(TodoItem).decode` to `nonEmptyArray(TodoItem).decode`. What will happen in case
  *    `getTodos()` returns an empty array (for both cases)?
  * 2. What is the use of `TodoItem.encode`?
+ *
+ * <<alternatives>>
+ * - valibot https://valibot.dev/
+ * - typebox https://github.com/sinclairzx81/typebox
+ *
+ * <<summary>>
+ *
+ * Valibot has a nice explanation on their website, more or less applicable to all such tools:
+ *
+ * "The core function of Valibot is to create a schema that describes a structured data set.
+ * A schema can be compared to a type definition in TypeScript. The big difference is that
+ * TypeScript types are 'not executed' and are more or less a DX feature. A schema on the
+ * other hand, apart from the inferred type definition, can also be executed at runtime to
+ * guarantee type safety of unknown data."
  */
