@@ -15,9 +15,9 @@
  * chapter 04 - runtime types:
  * - TypeScript's type system limitations,
  * - zod, io-ts,
- * - newtypes,
- * - pattern matching
+ * - newtypes
  * chapter 05 - extras:
+ * - pattern matching,
  * - algebraic data types,
  * - higher-kinded types
  *
