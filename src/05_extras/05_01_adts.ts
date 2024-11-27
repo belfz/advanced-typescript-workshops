@@ -1,21 +1,28 @@
+import { match, P } from 'ts-pattern'
+
 // #region product types
-class Some<T> {
-  _tag = 'Some'
-  constructor(public value: T) {}
+type Some<T> = {
+  _tag: 'Some'
+  value: T
 }
 
 // auxiliary
-function some<T>(value: T) {
-  return new Some(value)
+function some<T>(value: T): Some<T> {
+  return {
+    _tag: 'Some',
+    value,
+  }
 }
 
-class None {
-  _tag = 'None'
+type None = {
+  _tag: 'None'
 }
 
 // auxiliary
-function none<T>() {
-  return new None()
+function none(): None {
+  return {
+    _tag: 'None',
+  }
 }
 // #endregion
 
@@ -30,6 +37,13 @@ type Option<T> = None | Some<T>
 const main = () => {
   const something: Option<number> = some(42)
   const nothing: Option<number> = none()
+
+  const extracted = match<Option<number>, number>(something)
+    .with({ _tag: 'Some' }, (some) => some.value)
+    .with({ _tag: 'None' }, () => 0)
+    .exhaustive()
+
+  console.log(`extracted value: ${extracted}`)
 }
 
 main()
