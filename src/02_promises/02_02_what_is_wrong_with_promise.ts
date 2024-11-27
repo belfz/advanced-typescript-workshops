@@ -9,6 +9,7 @@ const asyncNumber = Promise.resolve(3)
  */
 const doThingAsync = (): Promise<number> => Promise.resolve(42)
 
+// #region misleading then
 /**
  * Promise's API can feel misleading.
  * `.then()` behaves both like `.map()` and like `.flatMap()` at the same time!
@@ -20,3 +21,4 @@ const thenable = () => {
     Promise.resolve(result + 1),
   )
 }
+// #endregion

@@ -20,22 +20,6 @@ type MappedPlayer = {
 }
 // #endregion
 
-// #region going crazy
-type Score = {
-  base: number
-  bonus: number
-}
-
-type CrazyPlayer = {
-  id: string
-  score: Score
-}
-
-type CrazyMapping = {
-  [prop in keyof Player]: Player[prop] extends string ? string : number
-}
-// #endregion
-
 /**
  * read more: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
  * in fact, only the first example is commonly used (constructing type's keys from union members)

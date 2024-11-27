@@ -2,17 +2,24 @@
  * Welcome to the Advanced TypeScript workshops.
  *
  * We will talk about:
- * - any vs unknown
- * - types of exports and exports of types
+ * chapter 01 - going a bit back to the basics:
+ * - any vs unknown,
+ * - types of exports and exports of types,
+ * - mapped types & utility types types,
  * - exceptions
- * - mapped types
- * - utility types types
- * - Promises
- * - functional programming
- * - runtime types
- * - algebraic data types
- * - newtypes
+ * chapter 02 - Promises:
+ * - how is 'async/await' similar to the 'do notation',
+ * - what is the "problem" with the Promise type
+ * chapter 03 - functional programming:
+ * - popular libraries
+ * chapter 04 - runtime types:
+ * - TypeScript's type system limitations,
+ * - zod, io-ts,
+ * - newtypes,
  * - pattern matching
+ * chapter 05 - extras:
+ * - algebraic data types,
+ * - higher-kinded types
  *
  * Enjoy!
  */

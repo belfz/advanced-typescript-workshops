@@ -33,3 +33,8 @@ const main = () => {
 
 main()
 // #endregion
+
+/**
+ * A TC39 stage 1 draft proposal for pattern matching in ECMAScript:
+ * https://github.com/tc39/proposal-pattern-matching?tab=readme-ov-file
+ */

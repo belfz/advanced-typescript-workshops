@@ -1,7 +1,6 @@
 import { getTodos } from '../http/client'
 import { isAxiosError } from 'axios'
 
-// #region main
 /**
  * Let's look at the typical Promise-handling code.
  */
@@ -19,7 +18,7 @@ const main = async () => {
      * 2. error: always of type `unknown`!
      */
     if (isAxiosError(err)) {
-      console.error(`AxiosError: ${err.message}`)
+      console.error(`Got AxiosError: ${err.message}`)
     } else {
       console.error(`Other error: ${err}`)
     }
@@ -27,4 +26,3 @@ const main = async () => {
 }
 
 main()
-// #endregion

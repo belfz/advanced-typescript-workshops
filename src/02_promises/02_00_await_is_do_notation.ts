@@ -9,16 +9,24 @@ const incrementAsync = (x: number) => Promise.resolve(x + 1)
 
 const doubleAsync = (x: number) => Promise.resolve(x * 2)
 
-const compose = async () => {
+const composeThen = () =>
+  getAsyncNumber()
+    .then((x) => incrementAsync(x))
+    .then((xPlusOne) => doubleAsync(xPlusOne))
+    .then((doubled) => `result is ${doubled}`)
+
+// #region async/await
+const composeAsyncAwait = async () => {
   const x = await getAsyncNumber()
   const xPlusOne = await incrementAsync(x)
   const doubled = await doubleAsync(xPlusOne)
   return `result is ${doubled}`
 }
+// #endregion
 
 // #region main
 const main = async () => {
-  console.log(await compose())
+  console.log(await composeAsyncAwait())
 }
 
 main()
