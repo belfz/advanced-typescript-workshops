@@ -1,4 +1,4 @@
-import { match, P } from 'ts-pattern'
+import { match } from 'ts-pattern'
 
 // #region product types
 type Some<T> = {
